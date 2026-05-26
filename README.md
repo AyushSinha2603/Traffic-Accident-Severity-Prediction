@@ -52,6 +52,12 @@ Relying on overall accuracy is a flawed approach for this dataset. While baselin
 
 ---
 
+## 📌 Final Notes
+
+This project highlights the importance of handling class imbalance in real-world datasets instead of relying solely on overall accuracy. Future improvements can include additional environmental and traffic-related features to further improve prediction performance and model reliability.
+
+---
+
 ## 🚀 How to Run this Project
 
 1. **Clone the repository:**
