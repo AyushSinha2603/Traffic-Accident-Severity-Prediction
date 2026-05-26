@@ -54,7 +54,7 @@ Relying on overall accuracy is a flawed approach for this dataset. While baselin
 
 ## 📌 Final Notes
 
-This project highlights the importance of handling class imbalance in real-world datasets instead of relying solely on overall accuracy. Future improvements can include additional environmental and traffic-related features to further improve prediction performance and model reliability.
+This project demonstrates how misleading high accuracy can be when working with heavily imbalanced real-world datasets. By applying techniques such as SMOTE and class weighting, the models were able to better identify minority severity classes instead of favoring the dominant class. Future improvements can include richer traffic, weather, and road-condition features to build a more reliable and robust accident severity prediction system.
 
 ---
 
