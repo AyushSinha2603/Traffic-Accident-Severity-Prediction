@@ -10,8 +10,6 @@ export default function Sidebar() {
     { name: 'Overview', path: '/', icon: 'dashboard' },
     { name: 'Analytics', path: '/analytics', icon: 'analytics' },
     { name: 'Simulation', path: '/simulation', icon: 'science' },
-    { name: 'Data Explorer', path: '/data-explorer', icon: 'storage' },
-    { name: 'Logs', path: '/logs', icon: 'list_alt' },
   ]
 
   return (

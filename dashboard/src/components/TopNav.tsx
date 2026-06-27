@@ -7,10 +7,7 @@ export default function TopNav() {
   const pathname = usePathname()
 
   const navItems = [
-    { name: 'Models', path: '/models' },
-    { name: 'Datasets', path: '/datasets' },
-    { name: 'Training', path: '/training' },
-    { name: 'Inference', path: '/inference' },
+    { name: 'Inference', path: '/simulation' },
   ]
 
   return (
