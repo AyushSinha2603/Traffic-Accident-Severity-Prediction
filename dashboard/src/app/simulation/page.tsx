@@ -21,12 +21,26 @@ export default function SimulationPage() {
   }
 
   return (
-    <section className="glass-card rounded-xl overflow-hidden border border-outline-variant">
-      <div className="bg-surface-container px-md py-sm border-b border-outline-variant flex items-center justify-between">
-        <h3 className="font-headline-sm text-headline-sm text-on-surface">Prediction Playground</h3>
-        <span className="material-symbols-outlined text-on-surface-variant cursor-help">info</span>
+    <>
+      <div className="mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          Inference <span className="text-gradient">Playground</span>
+        </h1>
+        <p className="text-on-surface-variant text-lg max-w-2xl">
+          Simulate weather and atmospheric conditions to observe real-time severity predictions from the underlying XGBoost core.
+        </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+
+      <section className="glass-card rounded-xl overflow-hidden border-t-2 border-t-primary relative">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary opacity-5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="bg-[rgba(10,10,30,0.8)] px-md py-sm border-b border-outline-variant flex items-center justify-between">
+          <h3 className="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+            <span className="material-symbols-outlined text-primary">science</span>
+            Live Simulation Engine
+          </h3>
+          <span className="material-symbols-outlined text-primary cursor-help">info</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 relative z-10">
         {/* Sliders Side */}
         <div className="p-xl border-r border-outline-variant space-y-lg">
           <div className="space-y-md">
@@ -84,5 +98,6 @@ export default function SimulationPage() {
         </div>
       </div>
     </section>
+    </>
   )
 }

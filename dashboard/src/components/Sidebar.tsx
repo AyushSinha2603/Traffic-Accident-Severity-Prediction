@@ -10,8 +10,6 @@ export default function Sidebar() {
     { name: 'Overview', path: '/', icon: 'dashboard' },
     { name: 'Analytics', path: '/analytics', icon: 'analytics' },
     { name: 'Simulation', path: '/simulation', icon: 'science' },
-    { name: 'Data Explorer', path: '/data-explorer', icon: 'storage' },
-    { name: 'Logs', path: '/logs', icon: 'list_alt' },
   ]
 
   return (
@@ -40,7 +38,7 @@ export default function Sidebar() {
         })}
       </nav>
       <div className="p-md space-y-sm">
-        <button className="w-full bg-primary text-on-primary font-bold py-sm px-md rounded-xl hover:scale-95 transition-all">Export Report</button>
+        <a href="/Traffic_Accident_Report.md" download="Traffic_Accident_Report.md" className="block text-center w-full bg-primary text-on-primary font-bold py-sm px-md rounded-xl hover:scale-95 transition-all">Export Report</a>
         <div className="flex flex-col gap-xs">
           <Link href="#" className="flex items-center gap-xs text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors">
             <span className="material-symbols-outlined">help</span>

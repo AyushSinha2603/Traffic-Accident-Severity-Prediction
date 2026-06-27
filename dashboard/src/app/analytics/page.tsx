@@ -1,6 +1,12 @@
 export default function AnalyticsPage() {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 gap-md">
+    <>
+      <div className="mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          Model <span className="text-gradient-alt">Analytics & Insights</span>
+        </h1>
+      </div>
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-md">
       {/* Feature Importance */}
       <div className="glass-card rounded-xl p-md interactive-hover flex flex-col h-[400px]">
         <div className="flex justify-between items-start mb-lg">
@@ -122,5 +128,6 @@ export default function AnalyticsPage() {
         </div>
       </div>
     </section>
+    </>
   )
 }
