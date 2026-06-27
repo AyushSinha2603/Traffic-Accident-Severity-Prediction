@@ -110,10 +110,29 @@
 
 @layer base {
   body {
-    background-color: var(--color-background);
+    background-color: #030014;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(255, 0, 127, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 100%, rgba(204, 255, 0, 0.08) 0%, transparent 40%);
+    background-attachment: fixed;
     color: var(--color-on-background);
     font-family: 'Inter', sans-serif;
   }
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-alt {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-tertiary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -127,16 +146,18 @@
   border-radius: 10px;
 }
 .glass-card {
-  background: rgba(18, 18, 38, 0.6);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 240, 255, 0.15);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(145deg, rgba(20, 10, 40, 0.6) 0%, rgba(5, 2, 15, 0.4) 100%);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
 }
 .interactive-hover:hover {
-  border-color: rgba(255, 0, 127, 0.8);
-  box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
-  transform: translateY(-2px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.2), inset 0 0 12px rgba(0, 240, 255, 0.05);
+  transform: translateY(-4px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .status-pill {
   background: rgba(204, 255, 0, 0.1);
