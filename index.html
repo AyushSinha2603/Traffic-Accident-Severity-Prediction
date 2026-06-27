@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Traffic Accident Severity Prediction | ML Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdcc5",
+                    "secondary-fixed": "#62fae3",
+                    "outline": "#908fa0",
+                    "on-secondary-fixed": "#00201c",
+                    "on-surface-variant": "#c7c4d7",
+                    "surface-container-low": "#131b2e",
+                    "surface-tint": "#c0c1ff",
+                    "on-error": "#690005",
+                    "on-secondary-fixed-variant": "#005047",
+                    "surface-dim": "#0b1326",
+                    "tertiary": "#ffb783",
+                    "inverse-on-surface": "#283044",
+                    "inverse-surface": "#dae2fd",
+                    "background": "#0b1326",
+                    "surface-variant": "#2d3449",
+                    "on-background": "#dae2fd",
+                    "tertiary-fixed-dim": "#ffb783",
+                    "surface-bright": "#31394d",
+                    "on-tertiary-fixed": "#301400",
+                    "on-tertiary": "#4f2500",
+                    "error-container": "#93000a",
+                    "secondary-fixed-dim": "#3cddc7",
+                    "on-primary-fixed": "#07006c",
+                    "on-tertiary-container": "#452000",
+                    "primary": "#c0c1ff",
+                    "surface-container-high": "#222a3d",
+                    "on-surface": "#dae2fd",
+                    "on-primary-container": "#0d0096",
+                    "surface": "#0b1326",
+                    "on-secondary-container": "#004d44",
+                    "surface-container": "#171f33",
+                    "surface-container-lowest": "#060e20",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed": "#e1e0ff",
+                    "outline-variant": "#464554",
+                    "secondary": "#44e2cd",
+                    "primary-container": "#8083ff",
+                    "on-primary": "#1000a9",
+                    "on-tertiary-fixed-variant": "#703700",
+                    "on-secondary": "#003731",
+                    "inverse-primary": "#494bd6",
+                    "surface-container-highest": "#2d3449",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "tertiary-container": "#d97721",
+                    "error": "#ffb4ab",
+                    "secondary-container": "#03c6b2",
+                    "on-primary-fixed-variant": "#2f2ebe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "xl": "48px",
+                    "gutter": "20px",
+                    "sm": "16px",
+                    "base": "4px",
+                    "md": "24px",
+                    "container-max": "1440px",
+                    "lg": "32px"
+            },
+            "fontFamily": {
+                    "data-mono": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        background-color: #020617; /* Canvas Level 0 */
+        color: #dae2fd;
+        font-family: 'Inter', sans-serif;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 10px;
+      }
+      .glass-card {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid #334155;
+      }
+      .interactive-hover:hover {
+        border-color: rgba(192, 193, 255, 0.5);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .status-pill {
+        background: rgba(68, 226, 205, 0.1);
+        color: #44e2cd;
+      }
+      input[type=range] {
+        -webkit-appearance: none;
+        background: transparent;
+      }
+      input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 6px;
+        background: #2d3449;
+        border-radius: 3px;
+      }
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+        margin-top: -6px;
+        box-shadow: 0 0 10px rgba(68, 226, 205, 0.5);
+      }
+    </style>
+</head>
+<body class="custom-scrollbar">
+<!-- TopNavBar -->
+<header class="bg-surface-container flex justify-between items-center px-gutter w-full h-16 docked full-width top-0 border-b border-outline-variant z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary">Traffic Accident Severity Prediction</div>
+<nav class="hidden md:flex gap-md">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Models</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Datasets</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Training</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Inference</a>
+</nav>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a data analyst in a modern office, soft bokeh lighting, high-end corporate photography style with a cool blue and slate color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt4vofidUHL4Kz_1_noUq_EU1bUrmvZbttYIa7dShYAjqcTIDbaFlDLdH5kJ8cz4ZvI0fsihnwUjKShhXGXTJp5v7vDGrAB1C7055E4LO3iJDSdp-5zs5Iq064Ddcke0BhpNiDQom1TNhECaqJJLzU4icHjQIcgg-hhvFbWV_ph2Czr_nhQtAmfH9xJ8eSg2VuAcrt45bZMXTJR7rQoXkeaRYtbCtAnenb2qUSxcgymM2ioNaWj7oCqAAbnBx9waaH4WGJ2cGtLuc"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 bottom-0 w-[260px] bg-surface-dim flex flex-col border-r border-outline-variant z-40">
+<div class="p-md flex flex-col gap-xs">
+<div class="text-primary font-headline-sm text-headline-sm">ML Core v2.1</div>
+<div class="text-on-surface-variant text-body-sm">Running: XGBoost_v4</div>
+</div>
+<nav id="sidebar-nav" class="flex-1 px-sm py-md space-y-base overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-xs bg-primary-container text-on-primary-container rounded-xl p-sm transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+<a class="flex items-center gap-xs text-on-surface-variant p-sm hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<a class="flex items-center gap-xs text-on-surface-variant p-sm hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span class="font-label-caps text-label-caps">Simulation</span>
+</a>
+<a class="flex items-center gap-xs text-on-surface-variant p-sm hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="storage">storage</span>
+<span class="font-label-caps text-label-caps">Data Explorer</span>
+</a>
+<a class="flex items-center gap-xs text-on-surface-variant p-sm hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span class="font-label-caps text-label-caps">Logs</span>
+</a>
+</nav>
+<div class="p-md space-y-sm">
+<button class="w-full bg-primary text-on-primary font-bold py-sm px-md rounded-xl hover:scale-95 transition-all">Export Report</button>
+<div class="flex flex-col gap-xs">
+<a class="flex items-center gap-xs text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                    Documentation
+                </a>
+<a class="flex items-center gap-xs text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+                    Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] mt-16 p-md min-h-screen">
+<div class="max-w-container-max mx-auto space-y-lg">
+<!-- Hero & KPI Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="glass-card interactive-hover p-md rounded-xl flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-xs">TOTAL RECORDS</span>
+<div class="font-data-mono text-display-lg text-primary">1.2M</div>
+<div class="flex items-center gap-xs mt-xs text-secondary font-body-sm">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+                        +12% vs last batch
+                    </div>
+</div>
+<div class="glass-card interactive-hover p-md rounded-xl flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-xs">BASELINE ACCURACY</span>
+<div class="font-data-mono text-display-lg text-secondary">87%</div>
+<div class="flex items-center gap-xs mt-xs text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
+                        Validated on 240k samples
+                    </div>
+</div>
+<div class="glass-card interactive-hover p-md rounded-xl flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-xs">BALANCED F1-SCORE</span>
+<div class="font-data-mono text-display-lg text-tertiary">0.92</div>
+<div class="flex items-center gap-xs mt-xs text-tertiary-fixed font-body-sm">
+<span class="material-symbols-outlined text-sm" data-icon="balance">balance</span>
+                        After SMOTE optimization
+                    </div>
+</div>
+</section>
+<!-- Prediction Playground -->
+<section class="glass-card rounded-xl overflow-hidden border border-outline-variant">
+<div class="bg-surface-container px-md py-sm border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Prediction Playground</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-help" data-icon="info">info</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2">
+<!-- Sliders Side -->
+<div class="p-xl border-r border-outline-variant space-y-lg">
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-on-surface-variant">TEMPERATURE (°F)</label>
+<span class="font-data-mono text-primary" id="temp-val">72</span>
+</div>
+<input class="w-full" id="temp-slider" max="120" min="-40" type="range" value="72"/>
+<div class="flex justify-between text-[10px] text-on-surface-variant opacity-50">
+<span>-40°F</span>
+<span>120°F</span>
+</div>
+</div>
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-on-surface-variant">VISIBILITY (MI)</label>
+<span class="font-data-mono text-secondary" id="vis-val">10</span>
+</div>
+<input class="w-full" id="vis-slider" max="10" min="0" step="0.1" type="range" value="10"/>
+<div class="flex justify-between text-[10px] text-on-surface-variant opacity-50">
+<span>0 MI</span>
+<span>10 MI</span>
+</div>
+</div>
+</div>
+<!-- Output Side -->
+<div class="relative bg-surface-container-low p-xl flex flex-col items-center justify-center text-center overflow-hidden">
+
+<div class="relative z-10 space-y-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">INFERENCE OUTPUT</span>
+<h2 class="font-display-lg text-display-lg">Predicted Severity: <span class="text-tertiary" id="severity-rank">3</span></h2>
+<div class="h-4 w-64 bg-surface-variant rounded-full overflow-hidden mx-auto border border-outline-variant mt-md" id="severity-indicator">
+<div class="h-full bg-tertiary-container w-[75%] transition-all duration-500" id="indicator-fill"></div>
+</div>
+<p class="text-body-sm text-on-surface-variant max-w-xs mx-auto pt-sm">Based on current atmospheric conditions and historical collision patterns.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Visualization Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Feature Importance -->
+<div class="glass-card rounded-xl p-md interactive-hover flex flex-col h-[400px]">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h4 class="font-headline-sm text-headline-sm">Feature Importance</h4>
+<p class="text-body-sm text-on-surface-variant">XGBoost Gain Weights</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bar_chart">bar_chart</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-sm">
+<div class="space-y-xs">
+<div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant">
+<span>TEMPERATURE</span>
+<span>0.68</span>
+</div>
+<div class="h-8 w-full bg-surface-variant rounded-lg overflow-hidden">
+<div class="h-full bg-primary w-[68%] relative">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-white opacity-20"></div>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant">
+<span>VISIBILITY</span>
+<span>0.42</span>
+</div>
+<div class="h-8 w-full bg-surface-variant rounded-lg overflow-hidden">
+<div class="h-full bg-secondary w-[42%] relative">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-white opacity-20"></div>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant">
+<span>WIND CHILL</span>
+<span>0.31</span>
+</div>
+<div class="h-8 w-full bg-surface-variant rounded-lg overflow-hidden">
+<div class="h-full bg-outline-variant w-[31%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Actual vs Predicted -->
+<div class="glass-card rounded-xl p-md interactive-hover flex flex-col h-[400px]">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h4 class="font-headline-sm text-headline-sm">Actual vs Predicted</h4>
+<p class="text-body-sm text-on-surface-variant">Alignment Confidence Scatter</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="show_chart">show_chart</span>
+</div>
+<div class="flex-1 relative border-l border-b border-outline-variant m-md">
+<!-- Simulated Scatter/Line Hybrid -->
+<div class="absolute inset-0 p-md flex items-end">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<line stroke="#464554" stroke-dasharray="4" stroke-width="0.5" x1="0" x2="100" y1="100" y2="0"></line>
+<path d="M0,100 Q20,80 40,65 T80,20 L100,0" fill="none" stroke="#c0c1ff" stroke-width="1.5"></path>
+<circle cx="10" cy="92" fill="#44e2cd" opacity="0.6" r="1.5"></circle>
+<circle cx="25" cy="78" fill="#44e2cd" opacity="0.6" r="1.5"></circle>
+<circle cx="45" cy="55" fill="#44e2cd" opacity="0.6" r="1.5"></circle>
+<circle cx="65" cy="35" fill="#44e2cd" opacity="0.6" r="1.5"></circle>
+<circle cx="85" cy="18" fill="#44e2cd" opacity="0.6" r="1.5"></circle>
+</svg>
+</div>
+<div class="absolute bottom-[-24px] w-full flex justify-between text-[10px] text-on-surface-variant font-data-mono">
+<span>0.0</span>
+<span>Actual Severity</span>
+<span>4.0</span>
+</div>
+<div class="absolute left-[-48px] h-full flex flex-col justify-between text-[10px] text-on-surface-variant font-data-mono transform rotate-[-90deg] translate-x-[-50%]">
+<span>4.0</span>
+<span>Predicted</span>
+<span>0.0</span>
+</div>
+</div>
+</div>
+<!-- Full Width Comparison -->
+<div class="md:col-span-2 glass-card rounded-xl p-md interactive-hover flex flex-col">
+<div class="flex justify-between items-start mb-xl">
+<div>
+<h4 class="font-headline-sm text-headline-sm">Class Imbalance Resolution</h4>
+<p class="text-body-sm text-on-surface-variant">Training Distribution: Original vs SMOTE-Balanced</p>
+</div>
+<div class="flex gap-md">
+<div class="flex items-center gap-xs font-label-caps text-[10px]">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span> MINOR (1-2)
+                            </div>
+<div class="flex items-center gap-xs font-label-caps text-[10px]">
+<span class="w-2 h-2 rounded-full bg-primary"></span> SEVERE (3-4)
+                            </div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl px-xl pb-md">
+<div class="space-y-md">
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-xs">ORIGINAL (IMBALANCED)</div>
+<div class="flex h-32 items-end gap-md justify-center">
+<div class="w-16 bg-outline-variant rounded-t-lg h-full relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">92%</span>
+</div>
+<div class="w-16 bg-primary rounded-t-lg h-[12%] relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">8%</span>
+</div>
+</div>
+</div>
+<div class="space-y-md">
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-xs">SMOTE-BALANCED</div>
+<div class="flex h-32 items-end gap-md justify-center">
+<div class="w-16 bg-outline-variant rounded-t-lg h-[50%] relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">50%</span>
+</div>
+<div class="w-16 bg-primary rounded-t-lg h-[50%] relative group">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-data-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">50%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights Panel -->
+<section class="glass-card rounded-xl p-md border-l-4 border-l-secondary">
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Model Resilience Analysis</h3>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                    Raw accuracy is deceptive in imbalanced sets. By utilizing SMOTE and class-weighted XGBoost, we shifted the model focus from majority-class frequency to minority-class patterns, successfully identifying <span class="text-secondary font-bold">94% of severe accidents (Severity 4)</span>. This trade-off significantly improves emergency response readiness while maintaining an overall F1-score of 0.92.
+                </p>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest flex justify-between items-center px-xl py-md w-full ml-[260px] border-t border-outline-variant">
+<div class="font-label-caps text-label-caps text-on-surface-variant">© 2024 Traffic Accident Systems - ML Technical Division</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Project Insights</a>
+<a class="text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Model Architecture</a>
+<a class="text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Technical Summary</a>
+<a class="text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">API Docs</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for sliders
+        const tempSlider = document.getElementById('temp-slider');
+        const tempVal = document.getElementById('temp-val');
+        const visSlider = document.getElementById('vis-slider');
+        const visVal = document.getElementById('vis-val');
+        const severityRank = document.getElementById('severity-rank');
+        const indicatorFill = document.getElementById('indicator-fill');
+
+        function updatePrediction() {
+            const t = parseInt(tempSlider.value);
+            const v = parseFloat(visSlider.value);
+            
+            tempVal.textContent = t;
+            visVal.textContent = v;
+
+            // Simple mock logic for severity change
+            let rank = 1;
+            if (t < 32 || t > 100 || v < 2) rank = 4;
+            else if (t < 45 || v < 5) rank = 3;
+            else if (t < 60 || v < 8) rank = 2;
+
+            severityRank.textContent = rank;
+            
+            // Update UI colors based on rank
+            const colors = {
+                1: { text: 'text-secondary', bg: 'bg-secondary', w: '25%' },
+                2: { text: 'text-primary', bg: 'bg-primary', w: '50%' },
+                3: { text: 'text-tertiary', bg: 'bg-tertiary-container', w: '75%' },
+                4: { text: 'text-error', bg: 'bg-error-container', w: '100%' }
+            };
+
+            severityRank.className = `transition-colors duration-300 ${colors[rank].text}`;
+            indicatorFill.className = `h-full transition-all duration-500 ${colors[rank].bg}`;
+            indicatorFill.style.width = colors[rank].w;
+        }
+
+        tempSlider.addEventListener('input', updatePrediction);
+        visSlider.addEventListener('input', updatePrediction);
+
+        // Initial update
+        updatePrediction();
+
+        // Sidebar Navigation Logic
+        const sidebarNav = document.getElementById('sidebar-nav');
+        const navItems = sidebarNav.querySelectorAll('a');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Remove active classes from all
+                navItems.forEach(nav => {
+                    nav.className = 'flex items-center gap-xs text-on-surface-variant p-sm hover:bg-surface-variant transition-all';
+                });
+                // Add active classes to the clicked item
+                item.className = 'flex items-center gap-xs bg-primary-container text-on-primary-container rounded-xl p-sm transition-all translate-x-1 duration-200';
+            });
+        });
+    </script>
+</body></html>

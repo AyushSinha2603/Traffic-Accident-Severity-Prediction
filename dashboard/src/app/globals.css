@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tertiary-fixed: #fde68a;
+  --color-secondary-fixed: #a5f3fc;
+  --color-outline: #52525b;
+  --color-on-secondary-fixed: #164e63;
+  --color-on-surface-variant: #a1a1aa;
+  --color-surface-container-low: #18181b;
+  --color-surface-tint: #a78bfa;
+  --color-on-error: #450a0a;
+  --color-on-secondary-fixed-variant: #0891b2;
+  --color-surface-dim: #09090b;
+  --color-tertiary: #f59e0b;
+  --color-inverse-on-surface: #27272a;
+  --color-inverse-surface: #f4f4f5;
+  --color-background: #09090b;
+  --color-surface-variant: #27272a;
+  --color-on-background: #e4e4e7;
+  --color-tertiary-fixed-dim: #fbbf24;
+  --color-surface-bright: #3f3f46;
+  --color-on-tertiary-fixed: #451a03;
+  --color-on-tertiary: #fffbeb;
+  --color-error-container: #ef4444;
+  --color-secondary-fixed-dim: #22d3ee;
+  --color-on-primary-fixed: #2e1065;
+  --color-on-tertiary-container: #fffbeb;
+  --color-primary: #8b5cf6;
+  --color-surface-container-high: #27272a;
+  --color-on-surface: #f4f4f5;
+  --color-on-primary-container: #ffffff;
+  --color-surface: #18181b;
+  --color-on-secondary-container: #ffffff;
+  --color-surface-container: #1f1f22;
+  --color-surface-container-lowest: #000000;
+  --color-on-error-container: #ffffff;
+  --color-primary-fixed: #ddd6fe;
+  --color-outline-variant: #3f3f46;
+  --color-secondary: #06b6d4;
+  --color-primary-container: #6d28d9;
+  --color-on-primary: #ffffff;
+  --color-on-tertiary-fixed-variant: #78350f;
+  --color-on-secondary: #ffffff;
+  --color-inverse-primary: #a78bfa;
+  --color-surface-container-highest: #3f3f46;
+  --color-primary-fixed-dim: #c4b5fd;
+  --color-tertiary-container: #b45309;
+  --color-error: #f87171;
+  --color-secondary-container: #0891b2;
+  --color-on-primary-fixed-variant: #5b21b6;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-gutter: 20px;
+  --spacing-base: 4px;
+  --spacing-container-max: 1440px;
+
+  --font-data-mono: "JetBrains Mono", monospace;
+  --font-body-md: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-display-lg: "Inter", sans-serif;
+  --font-label-caps: "Inter", sans-serif;
+  --font-headline-sm: "Inter", sans-serif;
+  --font-headline-md: "Inter", sans-serif;
+
+  /* Since text-headline-md, etc. were used in HTML as text sizes, we can define custom text classes in utilities or directly here */
+}
+
+@utility text-data-mono {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+@utility text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+@utility text-body-sm {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+@utility text-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+@utility text-label-caps {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+@utility text-headline-sm {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+@utility text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+@layer base {
+  body {
+    background-color: #09090b;
+    background-image: 
+      radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(6, 182, 212, 0.15), transparent 60%);
+    background-attachment: fixed;
+    color: #e4e4e7;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-alt {
+  background: linear-gradient(135deg, #2dd4bf 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+.glass-card {
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+.interactive-hover:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.15), 0 4px 6px -2px rgba(139, 92, 246, 0.05);
+  transform: translateY(-2px);
+  transition: all 0.3s ease-out;
+}
+.status-pill {
+  background: rgba(204, 255, 0, 0.1);
+  color: #ccff00;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  background: var(--color-surface-variant);
+  border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -6px;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+}
