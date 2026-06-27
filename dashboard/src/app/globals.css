@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tertiary-fixed: #ffdcc5;
+  --color-secondary-fixed: #62fae3;
+  --color-outline: #908fa0;
+  --color-on-secondary-fixed: #00201c;
+  --color-on-surface-variant: #c7c4d7;
+  --color-surface-container-low: #131b2e;
+  --color-surface-tint: #c0c1ff;
+  --color-on-error: #690005;
+  --color-on-secondary-fixed-variant: #005047;
+  --color-surface-dim: #0b1326;
+  --color-tertiary: #ffb783;
+  --color-inverse-on-surface: #283044;
+  --color-inverse-surface: #dae2fd;
+  --color-background: #0b1326;
+  --color-surface-variant: #2d3449;
+  --color-on-background: #dae2fd;
+  --color-tertiary-fixed-dim: #ffb783;
+  --color-surface-bright: #31394d;
+  --color-on-tertiary-fixed: #301400;
+  --color-on-tertiary: #4f2500;
+  --color-error-container: #93000a;
+  --color-secondary-fixed-dim: #3cddc7;
+  --color-on-primary-fixed: #07006c;
+  --color-on-tertiary-container: #452000;
+  --color-primary: #c0c1ff;
+  --color-surface-container-high: #222a3d;
+  --color-on-surface: #dae2fd;
+  --color-on-primary-container: #0d0096;
+  --color-surface: #0b1326;
+  --color-on-secondary-container: #004d44;
+  --color-surface-container: #171f33;
+  --color-surface-container-lowest: #060e20;
+  --color-on-error-container: #ffdad6;
+  --color-primary-fixed: #e1e0ff;
+  --color-outline-variant: #464554;
+  --color-secondary: #44e2cd;
+  --color-primary-container: #8083ff;
+  --color-on-primary: #1000a9;
+  --color-on-tertiary-fixed-variant: #703700;
+  --color-on-secondary: #003731;
+  --color-inverse-primary: #494bd6;
+  --color-surface-container-highest: #2d3449;
+  --color-primary-fixed-dim: #c0c1ff;
+  --color-tertiary-container: #d97721;
+  --color-error: #ffb4ab;
+  --color-secondary-container: #03c6b2;
+  --color-on-primary-fixed-variant: #2f2ebe;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-gutter: 20px;
+  --spacing-base: 4px;
+  --spacing-container-max: 1440px;
+
+  --font-data-mono: "JetBrains Mono", monospace;
+  --font-body-md: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-display-lg: "Inter", sans-serif;
+  --font-label-caps: "Inter", sans-serif;
+  --font-headline-sm: "Inter", sans-serif;
+  --font-headline-md: "Inter", sans-serif;
+
+  /* Since text-headline-md, etc. were used in HTML as text sizes, we can define custom text classes in utilities or directly here */
+}
+
+@utility text-data-mono {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+@utility text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+@utility text-body-sm {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+@utility text-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+@utility text-label-caps {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+@utility text-headline-sm {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+@utility text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+@layer base {
+  body {
+    background-color: #020617; /* Canvas Level 0 */
+    color: var(--color-dae2fd);
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+.glass-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid #334155;
+}
+.interactive-hover:hover {
+  border-color: rgba(192, 193, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.status-pill {
+  background: rgba(68, 226, 205, 0.1);
+  color: #44e2cd;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  background: #2d3449;
+  border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -6px;
+  box-shadow: 0 0 10px rgba(68, 226, 205, 0.5);
+}
