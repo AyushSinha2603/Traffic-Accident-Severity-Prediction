@@ -22,8 +22,8 @@ export default function RootLayout({
       <body className="custom-scrollbar antialiased">
         <TopNav />
         <Sidebar />
-        <main className="ml-[260px] mt-16 p-md min-h-screen">
-          <div className="max-w-container-max mx-auto space-y-lg">
+        <main className="ml-[260px] mt-16 p-8 min-h-screen">
+          <div className="max-w-[1200px] mx-auto space-y-8">
             {children}
           </div>
         </main>

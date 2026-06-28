@@ -1,64 +1,116 @@
 export default function OverviewPage() {
   return (
     <>
-      {/* Hero & KPI Section */}
-      <div className="mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-          Traffic Accident <span className="text-gradient">Severity Prediction</span>
+      {/* Hero */}
+      <div className="mb-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          REAL-TIME DASHBOARD
+        </div>
+        <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight text-on-surface">
+          Traffic Accident{' '}
+          <span className="text-gradient">Severity Prediction</span>
         </h1>
-        <p className="text-on-surface-variant text-lg max-w-2xl">
+        <p className="text-on-surface-variant text-base md:text-lg max-w-2xl leading-relaxed">
           Real-time monitoring and analysis of road incidents powered by an optimized XGBoost model to tackle severe class imbalances.
         </p>
       </div>
 
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-md">
-        <div className="glass-card interactive-hover p-xl rounded-xl flex flex-col justify-center relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-            <span className="material-symbols-outlined text-6xl text-primary">database</span>
+      {/* KPI Cards */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Total Records */}
+        <div className="glass-card interactive-hover p-6 flex flex-col justify-between relative overflow-hidden group min-h-[160px]">
+          <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-primary/8 blur-2xl group-hover:bg-primary/15 transition-all duration-500"></div>
+          <div className="flex items-center justify-between mb-4 relative z-10">
+            <span className="font-label-caps text-label-caps text-on-surface-variant tracking-widest">TOTAL RECORDS</span>
+            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
+              <span className="material-symbols-outlined text-primary text-lg">database</span>
+            </div>
           </div>
-          <span className="font-label-caps text-label-caps text-on-surface-variant mb-xs z-10 tracking-widest">TOTAL RECORDS</span>
-          <div className="font-data-mono text-display-lg text-primary z-10 drop-shadow-[0_0_15px_rgba(255,0,127,0.5)]">1.2M</div>
-          <div className="flex items-center gap-xs mt-xs text-secondary font-body-sm z-10">
-            <span className="material-symbols-outlined text-sm">trending_up</span>
-            +12% vs last batch
+          <div className="relative z-10">
+            <div className="font-data-mono text-4xl font-bold text-on-surface mb-1">1.2<span className="text-primary">M</span></div>
+            <div className="flex items-center gap-1.5 text-secondary text-xs font-medium">
+              <span className="material-symbols-outlined text-sm">trending_up</span>
+              +12% vs last batch
+            </div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 accent-bar-primary opacity-60"></div>
         </div>
 
-        <div className="glass-card interactive-hover p-xl rounded-xl flex flex-col justify-center relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-            <span className="material-symbols-outlined text-6xl text-secondary">verified</span>
+        {/* Baseline Accuracy */}
+        <div className="glass-card interactive-hover p-6 flex flex-col justify-between relative overflow-hidden group min-h-[160px]">
+          <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-secondary/8 blur-2xl group-hover:bg-secondary/15 transition-all duration-500"></div>
+          <div className="flex items-center justify-between mb-4 relative z-10">
+            <span className="font-label-caps text-label-caps text-on-surface-variant tracking-widest">BASELINE ACCURACY</span>
+            <div className="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center border border-secondary/20">
+              <span className="material-symbols-outlined text-secondary text-lg">verified</span>
+            </div>
           </div>
-          <span className="font-label-caps text-label-caps text-on-surface-variant mb-xs z-10 tracking-widest">BASELINE ACCURACY</span>
-          <div className="font-data-mono text-display-lg text-secondary z-10 drop-shadow-[0_0_15px_rgba(0,240,255,0.5)]">87%</div>
-          <div className="flex items-center gap-xs mt-xs text-on-surface-variant font-body-sm z-10">
-            <span className="material-symbols-outlined text-sm">analytics</span>
-            Validated on 240k samples
+          <div className="relative z-10">
+            <div className="font-data-mono text-4xl font-bold text-on-surface mb-1">87<span className="text-secondary">%</span></div>
+            <div className="flex items-center gap-1.5 text-on-surface-variant text-xs font-medium">
+              <span className="material-symbols-outlined text-sm">analytics</span>
+              Validated on 240k samples
+            </div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 accent-bar-secondary opacity-60"></div>
         </div>
 
-        <div className="glass-card interactive-hover p-xl rounded-xl flex flex-col justify-center relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-            <span className="material-symbols-outlined text-6xl text-tertiary">balance</span>
+        {/* Balanced F1 */}
+        <div className="glass-card interactive-hover p-6 flex flex-col justify-between relative overflow-hidden group min-h-[160px]">
+          <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-tertiary/8 blur-2xl group-hover:bg-tertiary/15 transition-all duration-500"></div>
+          <div className="flex items-center justify-between mb-4 relative z-10">
+            <span className="font-label-caps text-label-caps text-on-surface-variant tracking-widest">BALANCED F1-SCORE</span>
+            <div className="w-9 h-9 rounded-xl bg-tertiary/10 flex items-center justify-center border border-tertiary/20">
+              <span className="material-symbols-outlined text-tertiary text-lg">auto_graph</span>
+            </div>
           </div>
-          <span className="font-label-caps text-label-caps text-on-surface-variant mb-xs z-10 tracking-widest">BALANCED F1-SCORE</span>
-          <div className="font-data-mono text-display-lg text-tertiary z-10 drop-shadow-[0_0_15px_rgba(204,255,0,0.5)]">0.92</div>
-          <div className="flex items-center gap-xs mt-xs text-tertiary font-body-sm z-10">
-            <span className="material-symbols-outlined text-sm">auto_graph</span>
-            After SMOTE optimization
+          <div className="relative z-10">
+            <div className="font-data-mono text-4xl font-bold text-on-surface mb-1">0.<span className="text-tertiary">92</span></div>
+            <div className="flex items-center gap-1.5 text-tertiary text-xs font-medium">
+              <span className="material-symbols-outlined text-sm">balance</span>
+              After SMOTE optimization
+            </div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 accent-bar-tertiary opacity-60"></div>
         </div>
       </section>
 
       {/* Insights Panel */}
-      <section className="glass-card rounded-xl p-lg border-l-4 border-l-secondary mt-8 relative overflow-hidden">
-        <div className="absolute -right-20 -top-20 w-64 h-64 bg-secondary opacity-10 rounded-full blur-[80px]"></div>
-        <h3 className="font-headline-md text-headline-md text-secondary mb-4 flex items-center gap-2">
-          <span className="material-symbols-outlined">lightbulb</span>
-          Model Resilience Analysis
-        </h3>
-        <p className="text-body-md text-on-surface-variant leading-relaxed text-lg">
-          Raw accuracy is deceptive in imbalanced sets. By utilizing <span className="text-primary font-bold">SMOTE</span> and class-weighted XGBoost, we shifted the model focus from majority-class frequency to minority-class patterns, successfully identifying <span className="text-secondary font-bold px-2 py-1 rounded bg-secondary/10 border border-secondary/20">94% of severe accidents (Severity 4)</span>. This trade-off significantly improves emergency response readiness while maintaining an overall F1-score of <span className="text-tertiary font-bold">0.92</span>.
-        </p>
+      <section className="glass-card p-6 relative overflow-hidden mt-2">
+        <div className="absolute -right-16 -top-16 w-48 h-48 bg-secondary/10 rounded-full blur-[60px] pointer-events-none"></div>
+        <div className="absolute -left-16 -bottom-16 w-48 h-48 bg-primary/10 rounded-full blur-[60px] pointer-events-none"></div>
+
+        <div className="flex items-center gap-3 mb-4 relative z-10">
+          <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center border border-secondary/20">
+            <span className="material-symbols-outlined text-secondary">lightbulb</span>
+          </div>
+          <div>
+            <h3 className="font-headline-sm text-headline-sm text-on-surface">Model Resilience Analysis</h3>
+            <p className="text-on-surface-variant text-xs">Key findings from the optimization pipeline</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
+          <div className="bg-surface-variant/30 rounded-xl p-4 border border-outline-variant/50">
+            <div className="text-on-surface-variant text-xs font-medium mb-2">THE PROBLEM</div>
+            <p className="text-on-surface text-sm leading-relaxed">
+              Raw accuracy is <span className="text-tertiary font-semibold">deceptive</span> in imbalanced sets — the baseline model completely fails on minority classes.
+            </p>
+          </div>
+          <div className="bg-surface-variant/30 rounded-xl p-4 border border-outline-variant/50">
+            <div className="text-on-surface-variant text-xs font-medium mb-2">THE SOLUTION</div>
+            <p className="text-on-surface text-sm leading-relaxed">
+              <span className="text-primary font-semibold">SMOTE</span> + class-weighted XGBoost shifted focus from majority-class frequency to minority-class patterns.
+            </p>
+          </div>
+          <div className="bg-surface-variant/30 rounded-xl p-4 border border-outline-variant/50">
+            <div className="text-on-surface-variant text-xs font-medium mb-2">THE RESULT</div>
+            <p className="text-on-surface text-sm leading-relaxed">
+              Successfully identifying <span className="text-secondary font-semibold">94% of severe accidents</span> while maintaining an F1-score of <span className="text-tertiary font-semibold">0.92</span>.
+            </p>
+          </div>
+        </div>
       </section>
     </>
   )
