@@ -7,48 +7,57 @@ export default function Sidebar() {
   const pathname = usePathname()
 
   const navItems = [
-    { name: 'Overview', path: '/', icon: 'dashboard' },
-    { name: 'Analytics', path: '/analytics', icon: 'analytics' },
+    { name: 'Overview', path: '/', icon: 'space_dashboard' },
+    { name: 'Analytics', path: '/analytics', icon: 'monitoring' },
     { name: 'Simulation', path: '/simulation', icon: 'science' },
   ]
 
   return (
-    <aside className="fixed left-0 top-16 bottom-0 w-[260px] bg-surface-dim flex flex-col border-r border-outline-variant z-40">
-      <div className="p-md flex flex-col gap-xs">
-        <div className="text-primary font-headline-sm text-headline-sm">ML Core v2.1</div>
-        <div className="text-on-surface-variant text-body-sm">Running: XGBoost_v4</div>
+    <aside className="fixed left-0 top-0 bottom-0 w-[260px] bg-[#060c1f] flex flex-col border-r border-[rgba(148,163,184,0.08)] z-50">
+      {/* Brand */}
+      <div className="h-14 flex items-center gap-3 px-5 border-b border-[rgba(148,163,184,0.08)]">
+        <div className="w-8 h-8 rounded-lg accent-bar-primary flex items-center justify-center flex-shrink-0">
+          <span className="material-symbols-outlined text-white text-base">emergency</span>
+        </div>
+        <div className="min-w-0">
+          <div className="text-on-surface font-semibold text-sm truncate">Severity AI</div>
+          <div className="text-on-surface-variant text-[10px]">XGBoost v4.2</div>
+        </div>
       </div>
-      <nav className="flex-1 px-sm py-md space-y-base overflow-y-auto custom-scrollbar">
+
+      {/* Nav */}
+      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto custom-scrollbar">
+        <div className="px-3 mb-2 text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest">Dashboard</div>
         {navItems.map((item) => {
-          const isActive = pathname === item.path
+          const isActive = item.path === '/' ? pathname === '/' : pathname.startsWith(item.path)
           return (
             <Link
               key={item.name}
               href={item.path}
-              className={`flex items-center gap-xs rounded-xl p-sm transition-all duration-200 ${
+              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-150 text-[13px] font-medium ${
                 isActive
-                  ? 'bg-primary-container text-on-primary-container translate-x-1'
-                  : 'text-on-surface-variant hover:bg-surface-variant'
+                  ? 'bg-primary/12 text-primary'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-white/[0.04]'
               }`}
             >
-              <span className="material-symbols-outlined">{item.icon}</span>
-              <span className="font-label-caps text-label-caps">{item.name}</span>
+              <span className={`material-symbols-outlined text-xl ${isActive ? 'text-primary' : ''}`}>{item.icon}</span>
+              {item.name}
+              {isActive && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"></span>}
             </Link>
           )
         })}
       </nav>
-      <div className="p-md space-y-sm">
-        <a href="/Traffic_Accident_Report.md" download="Traffic_Accident_Report.md" className="block text-center w-full bg-primary text-on-primary font-bold py-sm px-md rounded-xl hover:scale-95 transition-all">Export Report</a>
-        <div className="flex flex-col gap-xs">
-          <Link href="#" className="flex items-center gap-xs text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors">
-            <span className="material-symbols-outlined">help</span>
-            Documentation
-          </Link>
-          <Link href="#" className="flex items-center gap-xs text-on-surface-variant text-body-sm hover:text-secondary-fixed transition-colors">
-            <span className="material-symbols-outlined">contact_support</span>
-            Support
-          </Link>
-        </div>
+
+      {/* Footer */}
+      <div className="p-3 space-y-2 border-t border-[rgba(148,163,184,0.08)]">
+        <a
+          href="/Traffic_Accident_Report.pdf"
+          download="Traffic_Accident_Report.pdf"
+          className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-lg font-semibold text-xs bg-primary text-white hover:bg-primary/90 transition-colors"
+        >
+          <span className="material-symbols-outlined text-base">download</span>
+          Export Report
+        </a>
       </div>
     </aside>
   )
