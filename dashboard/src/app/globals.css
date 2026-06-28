@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Refined Palette: Deep Midnight + Vivid Accents ── */
   --color-tertiary-fixed: #fde68a;
   --color-secondary-fixed: #a5f3fc;
   --color-outline: #3f3f46;
@@ -112,8 +111,9 @@
   body {
     background-color: #020617;
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.20), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(45, 212, 191, 0.12), transparent);
+      radial-gradient(ellipse 100% 60% at 50% -10%, rgba(99, 102, 241, 0.30), transparent),
+      radial-gradient(ellipse 70% 50% at 85% 90%, rgba(45, 212, 191, 0.18), transparent),
+      radial-gradient(ellipse 50% 40% at 10% 70%, rgba(129, 140, 248, 0.10), transparent);
     background-attachment: fixed;
     color: #e2e8f0;
     font-family: 'Inter', sans-serif;
@@ -122,7 +122,7 @@
 
 /* ── Text Gradients ── */
 .text-gradient {
-  background: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #2dd4bf 100%);
+  background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 40%, #2dd4bf 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -156,32 +156,35 @@
 
 /* ── Card System ── */
 .glass-card {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.80) 0%, rgba(15, 23, 42, 0.90) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(148, 163, 184, 0.14);
   border-radius: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease-out;
+  box-shadow:
+    0 0 0 0.5px rgba(255,255,255,0.04) inset,
+    0 4px 24px rgba(0, 0, 0, 0.40),
+    0 1px 2px rgba(0, 0, 0, 0.30);
+  transition: all 0.25s ease-out;
 }
 
 .interactive-hover {
-  transition: all 0.3s ease-out;
+  transition: all 0.25s ease-out;
 }
 .interactive-hover:hover {
-  border-color: rgba(129, 140, 248, 0.35);
+  border-color: rgba(129, 140, 248, 0.40);
   box-shadow:
-    0 0 0 1px rgba(129, 140, 248, 0.1),
-    0 10px 25px -5px rgba(129, 140, 248, 0.12),
-    0 8px 10px -6px rgba(0, 0, 0, 0.3);
-  transform: translateY(-3px);
+    0 0 0 0.5px rgba(129, 140, 248, 0.15) inset,
+    0 0 30px rgba(129, 140, 248, 0.12),
+    0 20px 40px rgba(0, 0, 0, 0.40);
+  transform: translateY(-2px);
 }
 
 /* ── Status & Pills ── */
 .status-pill {
-  background: rgba(45, 212, 191, 0.1);
+  background: rgba(45, 212, 191, 0.12);
   color: #2dd4bf;
-  border: 1px solid rgba(45, 212, 191, 0.2);
+  border: 1px solid rgba(45, 212, 191, 0.25);
 }
 
 /* ── Range Sliders ── */
@@ -193,7 +196,7 @@ input[type=range] {
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
-  background: linear-gradient(90deg, #1e293b, #334155);
+  background: rgba(51, 65, 85, 0.8);
   border-radius: 3px;
 }
 input[type=range]::-webkit-slider-thumb {
@@ -204,24 +207,35 @@ input[type=range]::-webkit-slider-thumb {
   background: linear-gradient(135deg, #818cf8, #6366f1);
   cursor: pointer;
   margin-top: -7px;
-  box-shadow: 0 0 12px rgba(129, 140, 248, 0.5), 0 0 4px rgba(129, 140, 248, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 14px rgba(129, 140, 248, 0.6), 0 0 4px rgba(129, 140, 248, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.25);
   transition: box-shadow 0.2s ease;
 }
 input[type=range]::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 20px rgba(129, 140, 248, 0.7), 0 0 6px rgba(129, 140, 248, 0.5);
+  box-shadow: 0 0 22px rgba(129, 140, 248, 0.8), 0 0 8px rgba(129, 140, 248, 0.6);
 }
 
-/* ── Accent Bar (e.g., for KPI cards) ── */
+/* ── Accent Bars ── */
 .accent-bar-primary {
-  background: linear-gradient(135deg, #818cf8, #6366f1);
+  background: linear-gradient(90deg, #818cf8, #6366f1);
 }
 .accent-bar-secondary {
-  background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+  background: linear-gradient(90deg, #2dd4bf, #14b8a6);
 }
 .accent-bar-tertiary {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
 }
 .accent-bar-error {
-  background: linear-gradient(135deg, #f87171, #dc2626);
+  background: linear-gradient(90deg, #f87171, #dc2626);
+}
+
+/* ── Glow Effects ── */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(129, 140, 248, 0.4), 0 0 40px rgba(129, 140, 248, 0.15);
+}
+.glow-secondary {
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.4), 0 0 40px rgba(45, 212, 191, 0.15);
+}
+.glow-tertiary {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.15);
 }
