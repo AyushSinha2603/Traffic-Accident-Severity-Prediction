@@ -51,8 +51,8 @@ export default function Sidebar() {
       {/* Footer */}
       <div className="p-3 space-y-2 border-t border-[rgba(148,163,184,0.08)]">
         <a
-          href="/Traffic_Accident_Report.md"
-          download="Traffic_Accident_Report.md"
+          href="/Traffic_Accident_Report.pdf"
+          download="Traffic_Accident_Report.pdf"
           className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-lg font-semibold text-xs bg-primary text-white hover:bg-primary/90 transition-colors"
         >
           <span className="material-symbols-outlined text-base">download</span>
