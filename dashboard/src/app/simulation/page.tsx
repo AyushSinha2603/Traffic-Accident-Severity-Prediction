@@ -6,98 +6,107 @@ export default function SimulationPage() {
   const [temperature, setTemperature] = useState(72)
   const [visibility, setVisibility] = useState(10.0)
 
-  // Simple mock logic for severity change
   let rank = 1
   if (temperature < 32 || temperature > 100 || visibility < 2) rank = 4
   else if (temperature < 45 || visibility < 5) rank = 3
   else if (temperature < 60 || visibility < 8) rank = 2
 
-  // Update UI colors based on rank
-  const colors: Record<number, { text: string; bg: string; w: string }> = {
-    1: { text: 'text-secondary', bg: 'bg-secondary', w: '25%' },
-    2: { text: 'text-primary', bg: 'bg-primary', w: '50%' },
-    3: { text: 'text-tertiary', bg: 'bg-tertiary-container', w: '75%' },
-    4: { text: 'text-error', bg: 'bg-error-container', w: '100%' }
+  const config: Record<number, { label: string; color: string; bg: string; border: string; bar: string; w: string; desc: string; icon: string }> = {
+    1: { label: 'LOW', color: 'text-secondary', bg: 'bg-secondary/10', border: 'border-secondary/20', bar: 'accent-bar-secondary', w: '25%', desc: 'Minor fender-bender conditions', icon: 'check_circle' },
+    2: { label: 'MODERATE', color: 'text-primary', bg: 'bg-primary/10', border: 'border-primary/20', bar: 'accent-bar-primary', w: '50%', desc: 'Elevated risk — exercise caution', icon: 'info' },
+    3: { label: 'HIGH', color: 'text-tertiary', bg: 'bg-tertiary/10', border: 'border-tertiary/20', bar: 'accent-bar-tertiary', w: '75%', desc: 'Dangerous conditions detected', icon: 'warning' },
+    4: { label: 'CRITICAL', color: 'text-error', bg: 'bg-error/10', border: 'border-error/20', bar: 'accent-bar-error', w: '100%', desc: 'Severe accident risk — high alert', icon: 'dangerous' },
   }
 
+  const c = config[rank]
+
   return (
-    <>
-      <div className="mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-          Inference <span className="text-gradient">Playground</span>
-        </h1>
-        <p className="text-on-surface-variant text-lg max-w-2xl">
-          Simulate weather and atmospheric conditions to observe real-time severity predictions from the underlying XGBoost core.
-        </p>
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-on-surface mb-1">Simulation</h1>
+        <p className="text-on-surface-variant text-sm">Adjust atmospheric variables to observe real-time severity predictions.</p>
       </div>
 
-      <section className="glass-card rounded-xl overflow-hidden border-t-2 border-t-primary relative">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary opacity-5 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="bg-[rgba(10,10,30,0.8)] px-md py-sm border-b border-outline-variant flex items-center justify-between">
-          <h3 className="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">science</span>
-            Live Simulation Engine
-          </h3>
-          <span className="material-symbols-outlined text-primary cursor-help">info</span>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 relative z-10">
-        {/* Sliders Side */}
-        <div className="p-xl border-r border-outline-variant space-y-lg">
-          <div className="space-y-md">
-            <div className="flex justify-between items-center">
-              <label className="font-label-caps text-label-caps text-on-surface-variant">TEMPERATURE (°F)</label>
-              <span className="font-data-mono text-primary">{temperature}</span>
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        {/* Controls */}
+        <div className="lg:col-span-2 glass-card p-5">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <span className="material-symbols-outlined text-primary text-base">tune</span>
             </div>
-            <input 
-              className="w-full" 
-              type="range" 
-              min="-40" 
-              max="120" 
-              value={temperature}
-              onChange={(e) => setTemperature(parseInt(e.target.value))}
-            />
-            <div className="flex justify-between text-[10px] text-on-surface-variant opacity-50">
-              <span>-40°F</span>
-              <span>120°F</span>
+            <div>
+              <h3 className="text-on-surface font-semibold text-sm">Input Controls</h3>
+              <p className="text-on-surface-variant text-xs">Atmospheric variables</p>
             </div>
           </div>
-          <div className="space-y-md">
-            <div className="flex justify-between items-center">
-              <label className="font-label-caps text-label-caps text-on-surface-variant">VISIBILITY (MI)</label>
-              <span className="font-data-mono text-secondary">{visibility}</span>
+
+          <div className="space-y-6">
+            {/* Temperature */}
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="text-on-surface-variant text-[11px] font-semibold uppercase tracking-wider">Temperature</label>
+                <span className="font-data-mono text-primary text-sm font-bold bg-primary/10 px-2 py-0.5 rounded border border-primary/20">{temperature}°F</span>
+              </div>
+              <input className="w-full" type="range" min="-40" max="120" value={temperature} onChange={(e) => setTemperature(parseInt(e.target.value))} />
+              <div className="flex justify-between text-[10px] text-on-surface-variant/50 mt-1 font-data-mono">
+                <span>-40°F</span><span>120°F</span>
+              </div>
             </div>
-            <input 
-              className="w-full" 
-              type="range" 
-              min="0" 
-              max="10" 
-              step="0.1" 
-              value={visibility}
-              onChange={(e) => setVisibility(parseFloat(e.target.value))}
-            />
-            <div className="flex justify-between text-[10px] text-on-surface-variant opacity-50">
-              <span>0 MI</span>
-              <span>10 MI</span>
+
+            {/* Visibility */}
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="text-on-surface-variant text-[11px] font-semibold uppercase tracking-wider">Visibility</label>
+                <span className="font-data-mono text-secondary text-sm font-bold bg-secondary/10 px-2 py-0.5 rounded border border-secondary/20">{visibility} mi</span>
+              </div>
+              <input className="w-full" type="range" min="0" max="10" step="0.1" value={visibility} onChange={(e) => setVisibility(parseFloat(e.target.value))} />
+              <div className="flex justify-between text-[10px] text-on-surface-variant/50 mt-1 font-data-mono">
+                <span>0 mi</span><span>10 mi</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Output Side */}
-        <div className="relative bg-surface-container-low p-xl flex flex-col items-center justify-center text-center overflow-hidden">
-          <div className="relative z-10 space-y-sm">
-            <span className="font-label-caps text-label-caps text-on-surface-variant">INFERENCE OUTPUT</span>
-            <h2 className="font-display-lg text-display-lg">Predicted Severity: <span className={`transition-colors duration-300 ${colors[rank].text}`}>{rank}</span></h2>
-            <div className="h-4 w-64 bg-surface-variant rounded-full overflow-hidden mx-auto border border-outline-variant mt-md">
-              <div 
-                className={`h-full transition-all duration-500 ${colors[rank].bg}`} 
-                style={{ width: colors[rank].w }}
-              ></div>
+        {/* Output */}
+        <div className="lg:col-span-3 glass-card p-5 relative overflow-hidden">
+          <div className="absolute -right-16 -top-16 w-48 h-48 bg-primary/5 rounded-full blur-[60px] pointer-events-none"></div>
+
+          <div className="flex items-center gap-3 mb-6 relative z-10">
+            <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
+              <span className="material-symbols-outlined text-secondary text-base">monitoring</span>
             </div>
-            <p className="text-body-sm text-on-surface-variant max-w-xs mx-auto pt-sm">Based on current atmospheric conditions and historical collision patterns.</p>
+            <div>
+              <h3 className="text-on-surface font-semibold text-sm">Inference Output</h3>
+              <p className="text-on-surface-variant text-xs">Real-time prediction</p>
+            </div>
+          </div>
+
+          <div className="relative z-10 flex flex-col items-center text-center py-4">
+            {/* Badge */}
+            <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold ${c.bg} border ${c.border} ${c.color} mb-4`}>
+              <span className="material-symbols-outlined text-sm">{c.icon}</span>
+              {c.label}
+            </div>
+
+            {/* Big Number */}
+            <div className={`font-data-mono text-6xl font-bold ${c.color} transition-colors duration-300 mb-1`}>{rank}</div>
+            <div className="text-on-surface-variant text-xs mb-4">Predicted Severity Level</div>
+
+            {/* Bar */}
+            <div className="w-full max-w-sm">
+              <div className="h-2.5 w-full bg-white/[0.04] rounded-full overflow-hidden border border-white/[0.06]">
+                <div className={`h-full transition-all duration-500 rounded-full ${c.bar}`} style={{ width: c.w }}></div>
+              </div>
+              <div className="flex justify-between mt-1 text-[10px] text-on-surface-variant/50 font-data-mono">
+                <span>1</span><span>2</span><span>3</span><span>4</span>
+              </div>
+            </div>
+
+            <p className={`text-xs font-medium mt-3 ${c.color}`}>{c.desc}</p>
           </div>
         </div>
       </div>
-    </section>
-    </>
+    </div>
   )
 }
