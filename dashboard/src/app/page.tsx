@@ -134,7 +134,6 @@ export default function OverviewPage() {
             <div>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[12px] text-[#8b909a] font-semibold">The Problem</span>
-                <span className="material-symbols-outlined text-[14px] text-[#8b909a]">unfold_more</span>
               </div>
               <p className="text-[13px] text-white mt-2 leading-relaxed">
                 Raw accuracy is <span className="text-[#ef4444] font-semibold">deceptive</span> in imbalanced sets.
@@ -143,7 +142,6 @@ export default function OverviewPage() {
             <div>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[12px] text-[#8b909a] font-semibold">The Solution</span>
-                <span className="material-symbols-outlined text-[14px] text-[#8b909a]">unfold_more</span>
               </div>
               <p className="text-[13px] text-white mt-2 leading-relaxed">
                 <span className="text-[#8b5cf6] font-semibold">SMOTE</span> + class-weighted XGBoost applied.
@@ -152,7 +150,6 @@ export default function OverviewPage() {
             <div>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[12px] text-[#8b909a] font-semibold">The Result</span>
-                <span className="material-symbols-outlined text-[14px] text-[#8b909a]">unfold_more</span>
               </div>
               <p className="text-[13px] text-white mt-2 leading-relaxed">
                 Identifying 94% of severe accidents (F1 0.92).
