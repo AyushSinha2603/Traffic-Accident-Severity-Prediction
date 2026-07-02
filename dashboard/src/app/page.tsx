@@ -173,7 +173,7 @@ export default function OverviewPage() {
           <div className="relative z-10">
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-2 text-white font-bold text-[14px]">
-                <span className="material-symbols-outlined">bolt</span> SeverityAI PRO
+                <span className="material-symbols-outlined">bolt</span> Live Inference PRO
               </div>
               <div className="px-2 py-0.5 bg-white text-black text-[10px] font-bold rounded-sm">NEW</div>
             </div>

@@ -20,7 +20,7 @@ export default function Sidebar() {
           <span className="material-symbols-outlined text-[18px] font-bold">bolt</span>
         </div>
         <div className="min-w-0">
-          <div className="text-white font-semibold text-[15px] tracking-wide">SeverityAI</div>
+          <div className="text-white font-semibold text-[15px] tracking-wide">Dashboard</div>
           <div className="text-[#8b909a] text-[11px] font-medium">XGBoost Engine</div>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function Sidebar() {
           <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#8b5cf6] blur-[30px] opacity-20 group-hover:opacity-30 transition-opacity"></div>
           <span className="material-symbols-outlined text-[#8b5cf6] text-[20px]">bolt</span>
           <div className="text-white font-semibold text-[13px] mt-1">Activate Super</div>
-          <div className="text-[#8b909a] text-[11px] leading-relaxed">Unlock all features on SeverityAI</div>
+          <div className="text-[#8b909a] text-[11px] leading-relaxed">Unlock all features on the dashboard</div>
         </div>
       </div>
     </aside>
