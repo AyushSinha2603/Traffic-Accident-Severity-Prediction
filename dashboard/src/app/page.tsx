@@ -111,11 +111,11 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      {/* Featured Wide Card (Like Liquid Staking) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6">
+      {/* Featured Wide Card */}
+      <div className="mt-6">
         
         {/* Insights */}
-        <div className="glass-card p-6 md:col-span-2">
+        <div className="glass-card p-6">
           <div className="flex items-center gap-2 mb-6 text-[#8b909a] text-[13px]">
             <span className="material-symbols-outlined text-[16px]">schedule</span> Last Update ~ 45 minutes ago
           </div>
@@ -162,34 +162,6 @@ export default function OverviewPage() {
                 Identifying 94% of severe accidents (F1 0.92).
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Gradient Featured Card */}
-        <div className="bg-gradient-purple rounded-2xl p-6 flex flex-col justify-between h-full relative overflow-hidden">
-          {/* Subtle star/particle bg mock */}
-          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent bg-[length:10px_10px]" style={{ backgroundSize: '20px 20px', backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)'}}></div>
-          
-          <div className="relative z-10">
-            <div className="flex justify-between items-center mb-6">
-              <div className="flex items-center gap-2 text-white font-bold text-[14px]">
-                <span className="material-symbols-outlined">bolt</span> Live Inference PRO
-              </div>
-              <div className="px-2 py-0.5 bg-white text-black text-[10px] font-bold rounded-sm">NEW</div>
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Live Inference Engine</h3>
-            <p className="text-[13px] text-[#8b909a] leading-relaxed mb-6 max-w-[200px]">
-              An all-in-one suite that helps you make smarter predictions in real-time.
-            </p>
-          </div>
-          
-          <div className="flex flex-col gap-3 relative z-10 mt-8">
-            <button className="w-full py-2.5 rounded-lg bg-white text-[#1e1136] font-bold text-[13px] hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
-              Connect Data Stream <span className="material-symbols-outlined text-[16px]">wifi</span>
-            </button>
-            <button className="w-full py-2.5 rounded-lg border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] text-white font-bold text-[13px] hover:bg-[rgba(255,255,255,0.1)] transition-colors flex items-center justify-center gap-2">
-              Enter API Key <span className="material-symbols-outlined text-[16px]">lock</span>
-            </button>
           </div>
         </div>
       </div>

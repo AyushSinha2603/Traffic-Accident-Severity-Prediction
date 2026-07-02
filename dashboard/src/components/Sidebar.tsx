@@ -54,15 +54,6 @@ export default function Sidebar() {
         </a>
       </nav>
 
-      {/* Footer Banner */}
-      <div className="p-4">
-        <div className="bg-[#161920] border border-[#2a2e39] rounded-2xl p-4 flex flex-col gap-1.5 relative overflow-hidden group hover:border-[#8b5cf6]/50 transition-colors cursor-pointer">
-          <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#8b5cf6] blur-[30px] opacity-20 group-hover:opacity-30 transition-opacity"></div>
-          <span className="material-symbols-outlined text-[#8b5cf6] text-[20px]">bolt</span>
-          <div className="text-white font-semibold text-[13px] mt-1">Activate Super</div>
-          <div className="text-[#8b909a] text-[11px] leading-relaxed">Unlock all features on the dashboard</div>
-        </div>
-      </div>
     </aside>
   )
 }
