@@ -27,7 +27,7 @@ export default function OverviewPage() {
       {/* KPI Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Total Records */}
-        <div className="glass-card p-6 flex flex-col justify-between h-[180px] interactive-hover cursor-pointer relative overflow-hidden group">
+        <div className="glass-card p-6 flex flex-col justify-between h-[180px] relative overflow-hidden">
           <div className="flex justify-between items-start z-10 relative">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded bg-[#8b5cf6]/20 flex items-center justify-center">
@@ -35,7 +35,6 @@ export default function OverviewPage() {
               </div>
               <span className="text-[#8b909a] text-[13px] font-medium">Total Records</span>
             </div>
-            <span className="material-symbols-outlined text-[#8b909a] text-[16px] group-hover:text-white transition-colors">arrow_outward</span>
           </div>
           
           <div className="mt-4 z-10 relative">
@@ -55,7 +54,7 @@ export default function OverviewPage() {
         </div>
 
         {/* Baseline Accuracy */}
-        <div className="glass-card p-6 flex flex-col justify-between h-[180px] interactive-hover cursor-pointer relative overflow-hidden group">
+        <div className="glass-card p-6 flex flex-col justify-between h-[180px] relative overflow-hidden">
           <div className="flex justify-between items-start z-10 relative">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded bg-[#3b82f6]/20 flex items-center justify-center">
@@ -63,7 +62,6 @@ export default function OverviewPage() {
               </div>
               <span className="text-[#8b909a] text-[13px] font-medium">Accuracy</span>
             </div>
-            <span className="material-symbols-outlined text-[#8b909a] text-[16px] group-hover:text-white transition-colors">arrow_outward</span>
           </div>
           
           <div className="mt-4 z-10 relative">
@@ -83,7 +81,7 @@ export default function OverviewPage() {
         </div>
 
         {/* Balanced F1 */}
-        <div className="glass-card p-6 flex flex-col justify-between h-[180px] interactive-hover cursor-pointer relative overflow-hidden group">
+        <div className="glass-card p-6 flex flex-col justify-between h-[180px] relative overflow-hidden">
           <div className="flex justify-between items-start z-10 relative">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded bg-[#f59e0b]/20 flex items-center justify-center">
@@ -91,7 +89,6 @@ export default function OverviewPage() {
               </div>
               <span className="text-[#8b909a] text-[13px] font-medium">F1-Score</span>
             </div>
-            <span className="material-symbols-outlined text-[#8b909a] text-[16px] group-hover:text-white transition-colors">arrow_outward</span>
           </div>
           
           <div className="mt-4 z-10 relative">
@@ -129,7 +126,6 @@ export default function OverviewPage() {
               <div className="text-[#8b909a] text-[13px] mt-1">Optimization Pipeline Output</div>
             </div>
             <div className="flex gap-2">
-              <button className="w-8 h-8 rounded-full border border-[#2a2e39] flex items-center justify-center text-[#8b909a] hover:bg-[#2a2e39] transition-colors"><span className="material-symbols-outlined text-[16px]">link</span></button>
               <button className="pill-btn !py-1 !px-3 text-[12px]">View Report <span className="material-symbols-outlined text-[14px]">arrow_outward</span></button>
             </div>
           </div>
