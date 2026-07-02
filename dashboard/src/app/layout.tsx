@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className="custom-scrollbar antialiased">
         <Sidebar />
         <TopNav />
-        <main className="ml-[260px] mt-14 min-h-[calc(100vh-56px)]">
+        <main className="ml-[260px] mt-[72px] min-h-[calc(100vh-72px)]">
           <div className="max-w-[1100px] mx-auto px-8 py-8">
             {children}
           </div>

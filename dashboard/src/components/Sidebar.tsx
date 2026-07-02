@@ -7,58 +7,61 @@ export default function Sidebar() {
   const pathname = usePathname()
 
   const navItems = [
-    { name: 'Overview', path: '/', icon: 'space_dashboard' },
+    { name: 'Dashboard', path: '/', icon: 'space_dashboard' },
     { name: 'Analytics', path: '/analytics', icon: 'monitoring' },
     { name: 'Simulation', path: '/simulation', icon: 'science' },
   ]
 
   return (
-    <aside className="fixed left-0 top-0 bottom-0 w-[260px] flex flex-col border-r border-white/[0.06] z-50"
-      style={{ background: 'linear-gradient(180deg, #0a0f1e 0%, #060c1a 100%)' }}>
+    <aside className="fixed left-0 top-0 bottom-0 w-[260px] bg-[#0d0f14] flex flex-col border-r border-[#1e222b] z-50">
       {/* Brand */}
-      <div className="h-14 flex items-center gap-3 px-5 border-b border-white/[0.06]">
-        <div className="w-8 h-8 rounded-lg accent-bar-primary flex items-center justify-center flex-shrink-0 shadow-[0_0_12px_rgba(129,140,248,0.4)]">
-          <span className="material-symbols-outlined text-white text-base">emergency</span>
+      <div className="h-[72px] flex items-center gap-3 px-6 border-b border-[#1e222b]">
+        <div className="w-7 h-7 rounded bg-white flex items-center justify-center flex-shrink-0 text-[#0d0f14]">
+          <span className="material-symbols-outlined text-[18px] font-bold">bolt</span>
         </div>
         <div className="min-w-0">
-          <div className="text-on-surface font-bold text-sm">Severity AI</div>
-          <div className="text-on-surface-variant text-[10px]">XGBoost v4.2</div>
+          <div className="text-white font-semibold text-[15px] tracking-wide">SeverityAI</div>
+          <div className="text-[#8b909a] text-[11px] font-medium">XGBoost Engine</div>
         </div>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto custom-scrollbar">
-        <div className="px-3 mb-3 text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-widest">Dashboard</div>
+      <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto custom-scrollbar">
         {navItems.map((item) => {
           const isActive = item.path === '/' ? pathname === '/' : pathname.startsWith(item.path)
           return (
             <Link
               key={item.name}
               href={item.path}
-              className={`flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-150 text-[13px] font-semibold ${
+              className={`flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 text-[13.5px] font-semibold ${
                 isActive
-                  ? 'bg-primary/15 text-primary border border-primary/20 shadow-[0_0_16px_rgba(129,140,248,0.15)]'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-white/[0.05] border border-transparent'
+                  ? 'bg-[#1e1136] text-[#8b5cf6]'
+                  : 'text-[#8b909a] hover:text-white hover:bg-[#161920]'
               }`}
             >
-              <span className={`material-symbols-outlined text-xl ${isActive ? 'text-primary' : ''}`}>{item.icon}</span>
+              <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
               {item.name}
-              {isActive && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(129,140,248,0.8)]"></span>}
             </Link>
           )
         })}
+
+        <div className="pt-8 pb-3 px-2 text-[10px] font-bold text-[#8b909a] uppercase tracking-wider">
+          Resources
+        </div>
+        <a href="/Traffic_Accident_Report.pdf" download="Traffic_Accident_Report.pdf" className="flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 text-[13.5px] font-semibold text-[#8b909a] hover:text-white hover:bg-[#161920]">
+          <span className="material-symbols-outlined text-[20px]">description</span>
+          Documentation
+        </a>
       </nav>
 
-      {/* Footer */}
-      <div className="p-3 border-t border-white/[0.06]">
-        <a
-          href="/Traffic_Accident_Report.pdf"
-          download="Traffic_Accident_Report.pdf"
-          className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl font-semibold text-xs accent-bar-primary text-white hover:opacity-90 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(129,140,248,0.3)]"
-        >
-          <span className="material-symbols-outlined text-base">download</span>
-          Export Report
-        </a>
+      {/* Footer Banner */}
+      <div className="p-4">
+        <div className="bg-[#161920] border border-[#2a2e39] rounded-2xl p-4 flex flex-col gap-1.5 relative overflow-hidden group hover:border-[#8b5cf6]/50 transition-colors cursor-pointer">
+          <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#8b5cf6] blur-[30px] opacity-20 group-hover:opacity-30 transition-opacity"></div>
+          <span className="material-symbols-outlined text-[#8b5cf6] text-[20px]">bolt</span>
+          <div className="text-white font-semibold text-[13px] mt-1">Activate Super</div>
+          <div className="text-[#8b909a] text-[11px] leading-relaxed">Unlock all features on SeverityAI</div>
+        </div>
       </div>
     </aside>
   )
